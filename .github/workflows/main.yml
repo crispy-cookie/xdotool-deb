@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install Dependencies
         run: |
@@ -40,7 +40,7 @@ jobs:
       - name: Upload Artifact for Releasea
         uses: actions/upload-artifact@v7
         with:
-          name: ${ VERSION }
+          name: xdotool
           # path: /home/runner/work/xdotool-deb/xdotool-deb/xdotool_20260614-1_amd64.deb
           path: /home/runner/work/xdotool-deb/xdotool-deb/xdotool_*_amd64.deb
           tag: ${ VERSION }
