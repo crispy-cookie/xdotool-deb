@@ -1,0 +1,44 @@
+name: C Project Build and Release
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libx11-dev \
+            libxtst-dev \
+            libxi-dev \
+            libxkbcommon-dev \
+            libxinerama-dev \
+            checkinstall \
+            build-essential
+
+      - name: Build Project
+        run: make
+
+      - name: Create Package with checkinstall
+        run: |
+          VERSION=$(date +'%Y%m%d')
+          sudo checkinstall --fstrans=no --install=no --nodoc  --pkgname="xdotool" --pkgversion="$VERSION"
+
+      - name: Upload Artifact for Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            *.deb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
