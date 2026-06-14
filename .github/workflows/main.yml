@@ -35,7 +35,7 @@ jobs:
           sudo checkinstall --fstrans=no --install=no --nodoc  --pkgname="xdotool" --pkgversion="v4.$(date +'%Y%m%d')"
 
       - name: Upload Artifact for Release
-        if: startsWith(github.ref, 'refs/tags/')
+        #if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
           files: |
