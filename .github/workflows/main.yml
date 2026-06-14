@@ -43,11 +43,6 @@ jobs:
           name: xdotool
           # path: /home/runner/work/xdotool-deb/xdotool-deb/xdotool_20260614-1_amd64.deb
           path: /home/runner/work/xdotool-deb/xdotool-deb/xdotool_*_amd64.deb
-          tag: ${ VERSION }
-          tag_name: ${ VERSION }
-          publish: true
-          files: |
-            *.deb
-
+        
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
