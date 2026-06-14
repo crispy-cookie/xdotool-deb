@@ -48,6 +48,7 @@ jobs:
           # Override the Release name/tag/version with the actual tag name
           name: ${ VERSION }
           tag: ${ VERSION }
+          tag_name: ${ VERSION }
           version: ${ VERSION }
           # Publish the Release
           publish: true
